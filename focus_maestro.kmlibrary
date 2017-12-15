@@ -27,134 +27,6 @@
 					<key>Actions</key>
 					<array>
 						<dict>
-							<key>DisplayKind</key>
-							<string>None</string>
-							<key>IncludeStdErr</key>
-							<false/>
-							<key>MacroActionType</key>
-							<string>ExecuteShellScript</string>
-							<key>Path</key>
-							<string></string>
-							<key>Source</key>
-							<string>Nothing</string>
-							<key>Text</key>
-							<string>open focus://unfocus</string>
-							<key>TimeOutAbortsMacro</key>
-							<true/>
-							<key>TrimResults</key>
-							<true/>
-							<key>TrimResultsNew</key>
-							<true/>
-							<key>UseText</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>DisplayKind</key>
-							<string>Variable</string>
-							<key>IncludeStdErr</key>
-							<false/>
-							<key>MacroActionType</key>
-							<string>ExecuteAppleScript</string>
-							<key>NotifyOnFailure</key>
-							<false/>
-							<key>Path</key>
-							<string></string>
-							<key>StopOnFailure</key>
-							<false/>
-							<key>Text</key>
-							<string>tell application "Keyboard Maestro Engine"	set togglApiKey to getvariable "FoMa_toggl_api_key"end tellactivate application "JSON Helper"tell application "JSON Helper"	set togglTimer to (fetch JSON from "https://www.toggl.com/api/v8/time_entries/current" name togglApiKey password "api_token")end tellset togglId to (|id| of |data| of togglTimer) as textset AppleScript's text item delimiters to {"E"}set multiplier to last text item of togglIdset togglId to first text item of togglIdset AppleScript's text item delimiters to {","}set togglId to (first text item of togglId &amp; last text item of togglId)</string>
-							<key>TimeOutAbortsMacro</key>
-							<true/>
-							<key>TrimResults</key>
-							<true/>
-							<key>TrimResultsNew</key>
-							<true/>
-							<key>UseText</key>
-							<true/>
-							<key>Variable</key>
-							<string>FoMa_toggl_timer_id</string>
-						</dict>
-						<dict>
-							<key>DisplayKind</key>
-							<string>Asynchronously</string>
-							<key>IncludeStdErr</key>
-							<false/>
-							<key>MacroActionType</key>
-							<string>ExecuteShellScript</string>
-							<key>Path</key>
-							<string></string>
-							<key>Source</key>
-							<string>Nothing</string>
-							<key>Text</key>
-							<string>curl -v -u "$KMVAR_FoMa_toggl_api_key:api_token" \
-	-H "Content-Type: application/json" \
-        -d '{}' \
-	-X PUT "https://www.toggl.com/api/v8/time_entries/$KMVAR_FoMa_toggl_timer_id/stop"</string>
-							<key>TimeOutAbortsMacro</key>
-							<true/>
-							<key>TrimResults</key>
-							<true/>
-							<key>TrimResultsNew</key>
-							<true/>
-							<key>UseText</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>MacroActionType</key>
-							<string>SetVariableToCalculation</string>
-							<key>Text</key>
-							<string>FoMa_pomodoro_counter - 1</string>
-							<key>UseFormat</key>
-							<false/>
-							<key>Variable</key>
-							<string>FoMa_pomodoro_counter</string>
-						</dict>
-						<dict>
-							<key>MacroActionType</key>
-							<string>Alert</string>
-							<key>SoundPath</key>
-							<string>/System/Library/Sounds/Glass.aiff</string>
-							<key>Text</key>
-							<string>You finished %Variable%FoMa_pomodoro_counter% pomodoros of %Variable%FoMa_pomodoro_length% minutes while working on %Variable%FoMa_type_of_work%!
-
-You had %Variable%FoMa_interruptions% interruptions:
-%Variable%FoMa_interruption_log%</string>
-							<key>TimeOutAbortsMacro</key>
-							<true/>
-							<key>Title</key>
-							<string>Well done!</string>
-						</dict>
-					</array>
-					<key>CreationDate</key>
-					<real>534902653.58848703</real>
-					<key>ModificationDate</key>
-					<real>534967917.40516198</real>
-					<key>Name</key>
-					<string>End Focus</string>
-					<key>Triggers</key>
-					<array/>
-					<key>UID</key>
-					<string>5AACFD8D-FBF0-470B-9346-664190A43CB8</string>
-				</dict>
-			</array>
-			<key>Name</key>
-			<string>Focus Maestro</string>
-			<key>ToggleMacroUID</key>
-			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
-			<key>UID</key>
-			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
-		</dict>
-		<dict>
-			<key>Activate</key>
-			<string>Normal</string>
-			<key>CreationDate</key>
-			<real>534933208.72569299</real>
-			<key>Macros</key>
-			<array>
-				<dict>
-					<key>Actions</key>
-					<array>
-						<dict>
 							<key>Buttons</key>
 							<array>
 								<dict>
@@ -210,17 +82,579 @@ You had %Variable%FoMa_interruptions% interruptions:
 								</dict>
 							</array>
 						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>SetVariableToText</string>
+							<key>Text</key>
+							<string></string>
+							<key>Variable</key>
+							<string>FoMa_toggl_timer_id</string>
+						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>SetVariableToText</string>
+							<key>Text</key>
+							<string></string>
+							<key>Variable</key>
+							<string>FoMa_toggl_timer_pid</string>
+						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>SetVariableToText</string>
+							<key>Text</key>
+							<string></string>
+							<key>Variable</key>
+							<string>FoMa_toggl_timer_desc</string>
+						</dict>
 					</array>
 					<key>CreationDate</key>
 					<real>534955225.11618203</real>
 					<key>ModificationDate</key>
-					<real>534968304.41031301</real>
+					<real>535030286.601376</real>
 					<key>Name</key>
-					<string>Setup Focus Maestro</string>
+					<string>_Setup Focus Maestro</string>
 					<key>Triggers</key>
 					<array/>
 					<key>UID</key>
 					<string>2C0DC526-FBFC-4C4F-8F7C-7315EC207BB2</string>
+				</dict>
+			</array>
+			<key>Name</key>
+			<string>Focus Maestro</string>
+			<key>ToggleMacroUID</key>
+			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
+			<key>UID</key>
+			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
+		</dict>
+		<dict>
+			<key>Activate</key>
+			<string>Normal</string>
+			<key>CreationDate</key>
+			<real>534933208.72569299</real>
+			<key>Macros</key>
+			<array>
+				<dict>
+					<key>Actions</key>
+					<array>
+						<dict>
+							<key>DisplayKind</key>
+							<string>Asynchronously</string>
+							<key>IncludeStdErr</key>
+							<false/>
+							<key>MacroActionType</key>
+							<string>ExecuteShellScript</string>
+							<key>Path</key>
+							<string></string>
+							<key>Source</key>
+							<string>Nothing</string>
+							<key>Text</key>
+							<string>open focus://unfocus</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>TrimResults</key>
+							<true/>
+							<key>TrimResultsNew</key>
+							<true/>
+							<key>UseText</key>
+							<true/>
+						</dict>
+						<dict>
+							<key>Asynchronously</key>
+							<true/>
+							<key>MacroActionType</key>
+							<string>ExecuteMacro</string>
+							<key>MacroUID</key>
+							<string>DC0ED511-627B-471C-998A-0CBFE943B5F1</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>UseParameter</key>
+							<false/>
+						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>SetVariableToCalculation</string>
+							<key>Text</key>
+							<string>FoMa_pomodoro_counter - 1</string>
+							<key>UseFormat</key>
+							<false/>
+							<key>Variable</key>
+							<string>FoMa_pomodoro_counter</string>
+						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>Alert</string>
+							<key>SoundPath</key>
+							<string>/System/Library/Sounds/Glass.aiff</string>
+							<key>Text</key>
+							<string>You finished %Variable%FoMa_pomodoro_counter% pomodoros of %Variable%FoMa_pomodoro_length% minutes while working on %Variable%FoMa_type_of_work%!
+
+You had %Variable%FoMa_interruptions% interruptions:
+%Variable%FoMa_interruption_log%</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>Title</key>
+							<string>Well done!</string>
+						</dict>
+					</array>
+					<key>CreationDate</key>
+					<real>534902653.58848703</real>
+					<key>ModificationDate</key>
+					<real>535052196.52118999</real>
+					<key>Name</key>
+					<string>End Focus</string>
+					<key>Triggers</key>
+					<array/>
+					<key>UID</key>
+					<string>5AACFD8D-FBF0-470B-9346-664190A43CB8</string>
+				</dict>
+			</array>
+			<key>Name</key>
+			<string>Focus Maestro</string>
+			<key>ToggleMacroUID</key>
+			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
+			<key>UID</key>
+			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
+		</dict>
+		<dict>
+			<key>Activate</key>
+			<string>Normal</string>
+			<key>CreationDate</key>
+			<real>534933208.72569299</real>
+			<key>Macros</key>
+			<array>
+				<dict>
+					<key>Actions</key>
+					<array>
+						<dict>
+							<key>Actions</key>
+							<array>
+								<dict>
+									<key>MacroActionType</key>
+									<string>Alert</string>
+									<key>SoundPath</key>
+									<string>/System/Library/Sounds/Blow.aiff</string>
+									<key>Text</key>
+									<string>Are you ready to focus %Variable%FoMa_pomodoro_length% minutes on %Variable%FoMa_type_of_work%?</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>Title</key>
+									<string>Ready for pomodoro %Variable%FoMa_pomodoro_counter% of %Variable%pomodoros%?</string>
+								</dict>
+								<dict>
+									<key>MacroActionType</key>
+									<string>Notification</string>
+									<key>SoundName</key>
+									<string>Pop</string>
+									<key>Subtitle</key>
+									<string></string>
+									<key>Text</key>
+									<string>Focus on "%Variable%FoMa_type_of_work%" for the next %Variable%FoMa_pomodoro_length% minutes!</string>
+									<key>Title</key>
+									<string>Start Focus Session</string>
+								</dict>
+								<dict>
+									<key>DisplayKind</key>
+									<string>Asynchronously</string>
+									<key>IncludeStdErr</key>
+									<false/>
+									<key>MacroActionType</key>
+									<string>ExecuteShellScript</string>
+									<key>Path</key>
+									<string></string>
+									<key>Source</key>
+									<string>Nothing</string>
+									<key>Text</key>
+									<string>open "focus://focus?minutes=$KMVAR_FoMa_pomodoro_length"</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>TrimResults</key>
+									<true/>
+									<key>TrimResultsNew</key>
+									<true/>
+									<key>UseText</key>
+									<true/>
+								</dict>
+								<dict>
+									<key>MacroActionType</key>
+									<string>Pause</string>
+									<key>Time</key>
+									<string>(FoMa_pomodoro_length * 60) + 3</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+								</dict>
+								<dict>
+									<key>MacroActionType</key>
+									<string>SetVariableToCalculation</string>
+									<key>Text</key>
+									<string>FoMa_pomodoro_counter + 1</string>
+									<key>UseFormat</key>
+									<false/>
+									<key>Variable</key>
+									<string>FoMa_pomodoro_counter</string>
+								</dict>
+								<dict>
+									<key>Conditions</key>
+									<dict>
+										<key>ConditionList</key>
+										<array>
+											<dict>
+												<key>ConditionType</key>
+												<string>Calculation</string>
+												<key>Text</key>
+												<string>FoMa_pomodoro_counter &lt;= pomodoros</string>
+											</dict>
+										</array>
+										<key>ConditionListMatch</key>
+										<string>All</string>
+									</dict>
+									<key>ElseActions</key>
+									<array/>
+									<key>MacroActionType</key>
+									<string>IfThenElse</string>
+									<key>ThenActions</key>
+									<array>
+										<dict>
+											<key>MacroActionType</key>
+											<string>Notification</string>
+											<key>SoundName</key>
+											<string>Purr</string>
+											<key>Subtitle</key>
+											<string></string>
+											<key>Text</key>
+											<string>Take a break of %Variable%FoMa_break_length% minutes.</string>
+											<key>Title</key>
+											<string>Start Break</string>
+										</dict>
+										<dict>
+											<key>MacroActionType</key>
+											<string>Pause</string>
+											<key>Time</key>
+											<string>(FoMa_break_length * 60)</string>
+											<key>TimeOutAbortsMacro</key>
+											<true/>
+										</dict>
+									</array>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+								</dict>
+							</array>
+							<key>Conditions</key>
+							<dict>
+								<key>ConditionList</key>
+								<array>
+									<dict>
+										<key>ConditionType</key>
+										<string>Calculation</string>
+										<key>Text</key>
+										<string>FoMa_pomodoro_counter &lt;= pomodoros</string>
+									</dict>
+								</array>
+								<key>ConditionListMatch</key>
+								<string>Any</string>
+							</dict>
+							<key>MacroActionType</key>
+							<string>While</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+						</dict>
+					</array>
+					<key>CreationDate</key>
+					<real>535033755.65660602</real>
+					<key>ModificationDate</key>
+					<real>535053030.82437903</real>
+					<key>Name</key>
+					<string>Focussing</string>
+					<key>Triggers</key>
+					<array/>
+					<key>UID</key>
+					<string>13935587-EC1A-466F-8124-9FA0AACBAD2E</string>
+				</dict>
+			</array>
+			<key>Name</key>
+			<string>Focus Maestro</string>
+			<key>ToggleMacroUID</key>
+			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
+			<key>UID</key>
+			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
+		</dict>
+		<dict>
+			<key>Activate</key>
+			<string>Normal</string>
+			<key>CreationDate</key>
+			<real>534933208.72569299</real>
+			<key>Macros</key>
+			<array>
+				<dict>
+					<key>Actions</key>
+					<array>
+						<dict>
+							<key>DisplayKind</key>
+							<string>None</string>
+							<key>IncludeStdErr</key>
+							<false/>
+							<key>MacroActionType</key>
+							<string>ExecuteAppleScript</string>
+							<key>NotifyOnFailure</key>
+							<false/>
+							<key>Path</key>
+							<string></string>
+							<key>StopOnFailure</key>
+							<false/>
+							<key>Text</key>
+							<string>tell application "Keyboard Maestro Engine"	set togglApiKey to getvariable "FoMa_toggl_api_key"end tellactivate application "JSON Helper"tell application "JSON Helper"	set togglTimer to (fetch JSON from "https://www.toggl.com/api/v8/time_entries/current" name togglApiKey password "api_token")end tellset togglId to (|id| of |data| of togglTimer) as textset AppleScript's text item delimiters to {"E"}set multiplier to last text item of togglIdset togglId to first text item of togglIdset AppleScript's text item delimiters to {","}set togglId to (first text item of togglId &amp; last text item of togglId)set togglPid to (pid of |data| of togglTimer) as texttry	set togglDesc to  (description of |data| of togglTimer) as texton error	try		set togglDesc to (description of |data| of togglTimer) as text	on error		set togglDesc to ""	end tryend trytell application "Keyboard Maestro Engine"	setvariable "FoMa_toggl_timer_id" to togglId	setvariable "FoMa_toggl_timer_desc" to togglDesc	setvariable "FoMa_toggl_timer_pid" to togglPidend tell</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>TrimResults</key>
+							<true/>
+							<key>TrimResultsNew</key>
+							<true/>
+							<key>UseText</key>
+							<true/>
+						</dict>
+					</array>
+					<key>CreationDate</key>
+					<real>535026933.57851398</real>
+					<key>ModificationDate</key>
+					<real>535051767.42019099</real>
+					<key>Name</key>
+					<string>Toggl timer get current timer details</string>
+					<key>Triggers</key>
+					<array/>
+					<key>UID</key>
+					<string>E206F231-44BA-40C3-8267-41E9308997CF</string>
+				</dict>
+			</array>
+			<key>Name</key>
+			<string>Focus Maestro</string>
+			<key>ToggleMacroUID</key>
+			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
+			<key>UID</key>
+			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
+		</dict>
+		<dict>
+			<key>Activate</key>
+			<string>Normal</string>
+			<key>CreationDate</key>
+			<real>534933208.72569299</real>
+			<key>Macros</key>
+			<array>
+				<dict>
+					<key>Actions</key>
+					<array>
+						<dict>
+							<key>Asynchronously</key>
+							<false/>
+							<key>MacroActionType</key>
+							<string>ExecuteMacro</string>
+							<key>MacroUID</key>
+							<string>E206F231-44BA-40C3-8267-41E9308997CF</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>UseParameter</key>
+							<false/>
+						</dict>
+						<dict>
+							<key>DisplayKind</key>
+							<string>Asynchronously</string>
+							<key>IncludeStdErr</key>
+							<false/>
+							<key>MacroActionType</key>
+							<string>ExecuteShellScript</string>
+							<key>Path</key>
+							<string></string>
+							<key>Source</key>
+							<string>Nothing</string>
+							<key>Text</key>
+							<string>curl -v -u "$KMVAR_FoMa_toggl_api_key:api_token" \
+	-H "Content-Type: application/json" \
+        -d '{}' \
+	-X PUT "https://www.toggl.com/api/v8/time_entries/$KMVAR_FoMa_toggl_timer_id/stop"</string>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+							<key>TrimResults</key>
+							<true/>
+							<key>TrimResultsNew</key>
+							<true/>
+							<key>UseText</key>
+							<true/>
+						</dict>
+					</array>
+					<key>CreationDate</key>
+					<real>535026632.82533503</real>
+					<key>ModificationDate</key>
+					<real>535052210.52749097</real>
+					<key>Name</key>
+					<string>Toggl timer stop</string>
+					<key>Triggers</key>
+					<array/>
+					<key>UID</key>
+					<string>DC0ED511-627B-471C-998A-0CBFE943B5F1</string>
+				</dict>
+			</array>
+			<key>Name</key>
+			<string>Focus Maestro</string>
+			<key>ToggleMacroUID</key>
+			<string>946E2974-81F8-45A6-80A5-776532575FC6</string>
+			<key>UID</key>
+			<string>82C7D5C9-1389-420C-8247-AADCD3671EB6</string>
+		</dict>
+		<dict>
+			<key>Activate</key>
+			<string>Normal</string>
+			<key>CreationDate</key>
+			<real>534933208.72569299</real>
+			<key>Macros</key>
+			<array>
+				<dict>
+					<key>Actions</key>
+					<array>
+						<dict>
+							<key>Conditions</key>
+							<dict>
+								<key>ConditionList</key>
+								<array>
+									<dict>
+										<key>ConditionType</key>
+										<string>Variable</string>
+										<key>Variable</key>
+										<string>FoMa_break_status</string>
+										<key>VariableConditionType</key>
+										<string>DoesNotContain</string>
+										<key>VariableValue</key>
+										<string>break</string>
+									</dict>
+								</array>
+								<key>ConditionListMatch</key>
+								<string>All</string>
+							</dict>
+							<key>ElseActions</key>
+							<array>
+								<dict>
+									<key>MacroActionType</key>
+									<string>SetVariableToText</string>
+									<key>Text</key>
+									<string></string>
+									<key>Variable</key>
+									<string>FoMa_break_status</string>
+								</dict>
+								<dict>
+									<key>MacroActionType</key>
+									<string>SetVariableToText</string>
+									<key>Text</key>
+									<string>{"time_entry": {"description": "%Variable%FoMa_toggl_timer_desc%","pid":"%Variable%FoMa_toggl_timer_pid%","created_with": "Focus Maestro"}}</string>
+									<key>Variable</key>
+									<string>FoMa_toggl_post_data</string>
+								</dict>
+								<dict>
+									<key>DisplayKind</key>
+									<string>Asynchronously</string>
+									<key>IncludeStdErr</key>
+									<false/>
+									<key>MacroActionType</key>
+									<string>ExecuteShellScript</string>
+									<key>Path</key>
+									<string></string>
+									<key>Source</key>
+									<string>Nothing</string>
+									<key>Text</key>
+									<string>curl -v -u "$KMVAR_FoMa_toggl_api_key:api_token" \
+	-H "Content-Type: application/json" \
+	-d "$KMVAR_FoMa_toggl_post_data" \
+	-X POST https://www.toggl.com/api/v8/time_entries/start</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>TrimResults</key>
+									<true/>
+									<key>TrimResultsNew</key>
+									<true/>
+									<key>UseText</key>
+									<true/>
+								</dict>
+								<dict>
+									<key>Asynchronously</key>
+									<false/>
+									<key>MacroActionType</key>
+									<string>ExecuteMacro</string>
+									<key>MacroUID</key>
+									<string>13935587-EC1A-466F-8124-9FA0AACBAD2E</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>UseParameter</key>
+									<false/>
+								</dict>
+							</array>
+							<key>MacroActionType</key>
+							<string>IfThenElse</string>
+							<key>ThenActions</key>
+							<array>
+								<dict>
+									<key>MacroActionType</key>
+									<string>SetVariableToText</string>
+									<key>Text</key>
+									<string>break</string>
+									<key>Variable</key>
+									<string>FoMa_break_status</string>
+								</dict>
+								<dict>
+									<key>DisplayKind</key>
+									<string>Asynchronously</string>
+									<key>IncludeStdErr</key>
+									<false/>
+									<key>MacroActionType</key>
+									<string>ExecuteShellScript</string>
+									<key>Path</key>
+									<string></string>
+									<key>Source</key>
+									<string>Nothing</string>
+									<key>Text</key>
+									<string>open focus://unfocus</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>TrimResults</key>
+									<true/>
+									<key>TrimResultsNew</key>
+									<true/>
+									<key>UseText</key>
+									<true/>
+								</dict>
+								<dict>
+									<key>Asynchronously</key>
+									<true/>
+									<key>MacroActionType</key>
+									<string>ExecuteMacro</string>
+									<key>MacroUID</key>
+									<string>DC0ED511-627B-471C-998A-0CBFE943B5F1</string>
+									<key>TimeOutAbortsMacro</key>
+									<true/>
+									<key>UseParameter</key>
+									<false/>
+								</dict>
+							</array>
+							<key>TimeOutAbortsMacro</key>
+							<true/>
+						</dict>
+					</array>
+					<key>CreationDate</key>
+					<real>535026406.39750201</real>
+					<key>ModificationDate</key>
+					<real>535053344.98542601</real>
+					<key>Name</key>
+					<string>Break Focus / Resume Focus</string>
+					<key>Triggers</key>
+					<array>
+						<dict>
+							<key>FireType</key>
+							<string>Pressed</string>
+							<key>KeyCode</key>
+							<integer>11</integer>
+							<key>MacroTriggerType</key>
+							<string>HotKey</string>
+							<key>Modifiers</key>
+							<integer>6400</integer>
+						</dict>
+					</array>
+					<key>UID</key>
+					<string>CBE93859-C09D-4FEF-9AF8-B1150E0F7DDF</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -257,6 +691,14 @@ You had %Variable%FoMa_interruptions% interruptions:
 							<string></string>
 							<key>Variable</key>
 							<string>FoMa_interruption_log</string>
+						</dict>
+						<dict>
+							<key>MacroActionType</key>
+							<string>SetVariableToText</string>
+							<key>Text</key>
+							<string></string>
+							<key>Variable</key>
+							<string>FoMa_break_status</string>
 						</dict>
 						<dict>
 							<key>AllWindows</key>
@@ -540,7 +982,7 @@ Grading</string>
 							<key>SoundPath</key>
 							<string></string>
 							<key>Text</key>
-							<string>Pick a task in your task manager (or create one) and start a toggl timer on it. (You need to have the Toggl button extension for Chrome installed)</string>
+							<string>Pick a task in your task manager (or create one) and start a toggl timer on it. (You need to have the Toggl button extension for Chrome installed.)</string>
 							<key>TimeOutAbortsMacro</key>
 							<true/>
 							<key>Title</key>
@@ -557,136 +999,16 @@ Grading</string>
 							<string>FoMa_pomodoro_counter</string>
 						</dict>
 						<dict>
-							<key>Actions</key>
-							<array>
-								<dict>
-									<key>MacroActionType</key>
-									<string>Alert</string>
-									<key>SoundPath</key>
-									<string>/System/Library/Sounds/Blow.aiff</string>
-									<key>Text</key>
-									<string>Are you ready to focus %Variable%FoMa_pomodoro_length% minutes on %Variable%FoMa_type_of_work%?</string>
-									<key>TimeOutAbortsMacro</key>
-									<true/>
-									<key>Title</key>
-									<string>Ready for pomodoro %Variable%FoMa_pomodoro_counter% of %Variable%pomodoros%?</string>
-								</dict>
-								<dict>
-									<key>MacroActionType</key>
-									<string>Notification</string>
-									<key>SoundName</key>
-									<string>Pop</string>
-									<key>Subtitle</key>
-									<string></string>
-									<key>Text</key>
-									<string>Focus on "%Variable%FoMa_type_of_work%" for the next %Variable%FoMa_pomodoro_length% minutes!</string>
-									<key>Title</key>
-									<string>Start Focus Session</string>
-								</dict>
-								<dict>
-									<key>DisplayKind</key>
-									<string>Asynchronously</string>
-									<key>IncludeStdErr</key>
-									<false/>
-									<key>MacroActionType</key>
-									<string>ExecuteShellScript</string>
-									<key>Path</key>
-									<string></string>
-									<key>Source</key>
-									<string>Nothing</string>
-									<key>Text</key>
-									<string>open "focus://focus?minutes=$KMVAR_FoMa_pomodoro_length"</string>
-									<key>TimeOutAbortsMacro</key>
-									<true/>
-									<key>TrimResults</key>
-									<true/>
-									<key>TrimResultsNew</key>
-									<true/>
-									<key>UseText</key>
-									<true/>
-								</dict>
-								<dict>
-									<key>MacroActionType</key>
-									<string>Pause</string>
-									<key>Time</key>
-									<string>(FoMa_pomodoro_length * 60) + 3</string>
-									<key>TimeOutAbortsMacro</key>
-									<true/>
-								</dict>
-								<dict>
-									<key>MacroActionType</key>
-									<string>SetVariableToCalculation</string>
-									<key>Text</key>
-									<string>FoMa_pomodoro_counter + 1</string>
-									<key>UseFormat</key>
-									<false/>
-									<key>Variable</key>
-									<string>FoMa_pomodoro_counter</string>
-								</dict>
-								<dict>
-									<key>Conditions</key>
-									<dict>
-										<key>ConditionList</key>
-										<array>
-											<dict>
-												<key>ConditionType</key>
-												<string>Calculation</string>
-												<key>Text</key>
-												<string>FoMa_pomodoro_counter &lt;= pomodoros</string>
-											</dict>
-										</array>
-										<key>ConditionListMatch</key>
-										<string>All</string>
-									</dict>
-									<key>ElseActions</key>
-									<array/>
-									<key>MacroActionType</key>
-									<string>IfThenElse</string>
-									<key>ThenActions</key>
-									<array>
-										<dict>
-											<key>MacroActionType</key>
-											<string>Notification</string>
-											<key>SoundName</key>
-											<string>Purr</string>
-											<key>Subtitle</key>
-											<string></string>
-											<key>Text</key>
-											<string>Take a break of %Variable%FoMa_break_length% minutes.</string>
-											<key>Title</key>
-											<string>Start Break</string>
-										</dict>
-										<dict>
-											<key>MacroActionType</key>
-											<string>Pause</string>
-											<key>Time</key>
-											<string>(FoMa_break_length * 60)</string>
-											<key>TimeOutAbortsMacro</key>
-											<true/>
-										</dict>
-									</array>
-									<key>TimeOutAbortsMacro</key>
-									<true/>
-								</dict>
-							</array>
-							<key>Conditions</key>
-							<dict>
-								<key>ConditionList</key>
-								<array>
-									<dict>
-										<key>ConditionType</key>
-										<string>Calculation</string>
-										<key>Text</key>
-										<string>FoMa_pomodoro_counter &lt;= pomodoros</string>
-									</dict>
-								</array>
-								<key>ConditionListMatch</key>
-								<string>Any</string>
-							</dict>
+							<key>Asynchronously</key>
+							<false/>
 							<key>MacroActionType</key>
-							<string>While</string>
+							<string>ExecuteMacro</string>
+							<key>MacroUID</key>
+							<string>13935587-EC1A-466F-8124-9FA0AACBAD2E</string>
 							<key>TimeOutAbortsMacro</key>
 							<true/>
+							<key>UseParameter</key>
+							<false/>
 						</dict>
 						<dict>
 							<key>Asynchronously</key>
@@ -704,7 +1026,7 @@ Grading</string>
 					<key>CreationDate</key>
 					<real>534896719.96933597</real>
 					<key>ModificationDate</key>
-					<real>534967434.949745</real>
+					<real>535053063.18649501</real>
 					<key>Name</key>
 					<string>Start Focus</string>
 					<key>Triggers</key>
@@ -869,6 +1191,6 @@ Phonecall</string>
 		</dict>
 	</array>
 	<key>UID</key>
-	<string>D30A7CCB-E960-46BF-B9A7-5A69FBA950C2</string>
+	<string>57DD4E37-9E46-4CE2-ACD4-4E53D5B4E86E</string>
 </dict>
 </plist>
